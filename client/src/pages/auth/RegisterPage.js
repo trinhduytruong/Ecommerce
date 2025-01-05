@@ -10,18 +10,9 @@ import Breadcrumb from "../../wrappers/breadcrumb/Breadcrumb";
 import { toggleShowLoading } from "../../redux/actions/common";
 import { useDispatch } from "react-redux";
 import { API_SERVICE } from "../../helpers/apiHelper";
-import { Alert, Button, Form } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 import { checkValidate } from "../../helpers/common";
 import { useToasts } from "react-toast-notifications";
-
-const FORM_LOGIN = {
-  email: { value: "", name: "Email", rules: { required: true } },
-  password: {
-    value: "",
-    name: "Mật khẩu",
-    rules: { required: true, minLength: 6 },
-  },
-};
 
 const FORM_REGISTER = {
   name: { value: "", name: "Họ và tên", rules: { required: true } },
@@ -32,9 +23,8 @@ const FORM_REGISTER = {
     rules: { required: true, minLength: 6 },
   },
 };
-const LoginRegister = ({ location }) => {
+const Register = ({ location }) => {
   const { pathname } = location;
-  const [form, setForm] = useState({ ...FORM_LOGIN });
   const [formRegister, setFormRegister] = useState({ ...FORM_REGISTER });
 
   const [errors, setErrors] = useState(null);
@@ -50,43 +40,6 @@ const LoginRegister = ({ location }) => {
   }, [location.search]);
 
   const dispatch = useDispatch();
-
-  const resetForm = () => {
-    setForm({ ...FORM_LOGIN });
-    setFormRegister({ ...FORM_REGISTER });
-    setErrorsRegister(null);
-    setErrors(null);
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    let errorData = checkValidate(form);
-    if (errorData) {
-      console.log("errorData -----> ", errorData, form);
-      setErrors({ ...errorData });
-      return;
-    }
-    let body = Object.keys(form).reduce((newItem, key) => {
-      newItem[key] = form[key]?.value?.trim();
-      return newItem;
-    }, {});
-    dispatch(toggleShowLoading(true));
-    const response = await API_SERVICE.post("auth/login", body);
-    dispatch(toggleShowLoading(false));
-    console.log("response --------> ", response);
-    if (response?.status == "success" && response?.data) {
-      localStorage.setItem("access_token", response?.data?.token);
-      localStorage.setItem("user", JSON.stringify(response?.data?.user));
-      addToast("Đăng nhập thành công", {
-        appearance: "success",
-        autoDismiss: true,
-        // placement: "top-right",
-      });
-      window.location.href = "/";
-    } else {
-      addToast(response?.message, { appearance: "error", autoDismiss: true });
-    }
-  };
 
   const handleSubmitRegister = async (e) => {
     e.preventDefault();
@@ -115,7 +68,7 @@ const LoginRegister = ({ location }) => {
       });
       // localStorage.setItem( 'access_token', response?.data?.token );
       // localStorage.setItem( 'user', JSON.stringify( response?.data?.user ) );
-      window.location.href = "/login-register";
+      window.location.href = "/dang-nhap";
     } else {
       addToast(response?.message, { appearance: "error", autoDismiss: true });
     }
@@ -124,7 +77,7 @@ const LoginRegister = ({ location }) => {
   return (
     <Fragment>
       <MetaTags>
-        <title>Đăng nhập | Đăng ký</title>
+        <title>Đăng ký</title>
         <meta
           name="description"
           content="Compare page of flone react minimalist eCommerce template."
@@ -132,7 +85,7 @@ const LoginRegister = ({ location }) => {
       </MetaTags>
       <BreadcrumbsItem to={process.env.PUBLIC_URL + "/"}>Home</BreadcrumbsItem>
       <BreadcrumbsItem to={process.env.PUBLIC_URL + pathname}>
-        Đăng nhập | Đăng ký
+        Đăng ký
       </BreadcrumbsItem>
       <LayoutOne headerTop="visible">
         {/* breadcrumb */}
@@ -142,13 +95,8 @@ const LoginRegister = ({ location }) => {
             <div className="row">
               <div className="col-lg-7 col-md-12 ml-auto mr-auto">
                 <div className="login-register-wrapper">
-                  <Tab.Container defaultActiveKey="login">
+                  <Tab.Container defaultActiveKey="register">
                     <Nav variant="pills" className="login-register-tab-list">
-                      <Nav.Item>
-                        <Nav.Link eventKey="login">
-                          <h4>Đăng nhập</h4>
-                        </Nav.Link>
-                      </Nav.Item>
                       <Nav.Item>
                         <Nav.Link eventKey="register">
                           <h4>Đăng ký</h4>
@@ -156,80 +104,6 @@ const LoginRegister = ({ location }) => {
                       </Nav.Item>
                     </Nav>
                     <Tab.Content>
-                      <Tab.Pane eventKey="login">
-                        <div className="login-form-container">
-                          <div className="login-register-form">
-                            <Form onSubmit={handleSubmit}>
-                              <Form.Group controlId="formEmail">
-                                <Form.Label>Email </Form.Label>
-                                <Form.Control
-                                  type="email"
-                                  placeholder="Nhập email"
-                                  className="mb-1"
-                                  value={form?.email?.value}
-                                  onChange={(e) => {
-                                    setForm({
-                                      ...form,
-                                      email: {
-                                        ...form.email,
-                                        value: e?.target?.value,
-                                      },
-                                    });
-                                    setErrors({ ...errors, email: null });
-                                  }}
-                                  isInvalid={!!errors?.email}
-                                />
-                                {errors?.email && (
-                                  <span className="text-danger">
-                                    {errors?.email}
-                                  </span>
-                                )}
-                              </Form.Group>
-
-                              <Form.Group controlId="formPassword">
-                                <Form.Label>Mật khẩu</Form.Label>
-                                <Form.Control
-                                  type="password"
-                                  placeholder="Nhập mật khẩu"
-                                  className="mb-1"
-                                  value={form?.password?.value}
-                                  onChange={(e) => {
-                                    setForm({
-                                      ...form,
-                                      password: {
-                                        ...form.password,
-                                        value: e?.target?.value,
-                                      },
-                                    });
-                                    setErrors({ ...errors, password: null });
-                                  }}
-                                  isInvalid={!!errors?.password}
-                                />
-                                {errors?.password && (
-                                  <span className="text-danger">
-                                    {errors?.password}
-                                  </span>
-                                )}
-                              </Form.Group>
-                              <div className="button-box d-flex justify-content-between align-items-center">
-                                <div className="login-toggle-btn">
-                                  <Link
-                                    to={
-                                      process.env.PUBLIC_URL +
-                                      "/quen-mat-khau"
-                                    }
-                                  >
-                                    Quên mật khẩu?
-                                  </Link>
-                                </div>
-                                <button type="submit">
-                                  <span>Đăng nhập</span>
-                                </button>
-                              </div>
-                            </Form>
-                          </div>
-                        </div>
-                      </Tab.Pane>
                       <Tab.Pane eventKey="register">
                         <div className="login-form-container">
                           <div className="login-register-form">
@@ -319,9 +193,16 @@ const LoginRegister = ({ location }) => {
                                   </span>
                                 )}
                               </Form.Group>
-                              <div className="button-box d-flex justify-content-end align-items-center">
+                              <div className="button-box d-flex justify-content-between align-items-center">
+                                <div className="login-toggle-btn">
+                                  <Link
+                                    to="/dang-nhap"
+                                  >
+                                    Bạn đã có tài khoản?
+                                  </Link>
+                                </div>
                                 <button type="submit">
-                                  <span>Đăng ký</span>
+                                  <span>Đăng Ký</span>
                                 </button>
                               </div>
                             </Form>
@@ -340,8 +221,8 @@ const LoginRegister = ({ location }) => {
   );
 };
 
-LoginRegister.propTypes = {
+Register.propTypes = {
   location: PropTypes.object,
 };
 
-export default LoginRegister;
+export default Register;

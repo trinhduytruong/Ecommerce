@@ -85,7 +85,7 @@ const Cart = ({
 
     dispatch(toggleShowLoading(false));
     if (response?.status == "success") {
-      addToast("Checkout successfully", {
+      addToast("Thanh toán thành công", {
         appearance: "success",
         autoDismiss: true,
         placement: "top-right",

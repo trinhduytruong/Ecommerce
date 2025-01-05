@@ -73,7 +73,7 @@ const ResetPassword = ({ location, isShowLoading }) => {
         autoDismiss: true,
         placement: "top-right",
       });
-      history.push("/login-register?tab=login");
+      history.push("/dang-nhap");
     } else {
       addToast(response.message, {
         appearance: "error",
@@ -169,7 +169,7 @@ const ResetPassword = ({ location, isShowLoading }) => {
                           Bạn chưa có tài khoản? Đăng ký
                           <u className="text-info">
                             <Link
-                              to={"/login-register?tab=register"}
+                              to={"/dang-ky"}
                               className="font-italic text-primary  mx-2"
                             >
                               tại đây

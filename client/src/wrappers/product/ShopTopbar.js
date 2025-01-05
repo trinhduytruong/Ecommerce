@@ -17,8 +17,8 @@ const ShopTopbar = ({
         getFilterSortParams={getFilterSortParams}
         productCount={productCount}
         sortedProductCount={sortedProductCount}
-		getSortParams={props.getSortParams}
-		params={props.params}
+        getSortParams={props.getSortParams}
+        params={props.params}
       />
     </Fragment>
   );
@@ -28,7 +28,7 @@ ShopTopbar.propTypes = {
   getFilterSortParams: PropTypes.func,
   getLayout: PropTypes.func,
   productCount: PropTypes.number,
-  sortedProductCount: PropTypes.number
+  sortedProductCount: PropTypes.number,
 };
 
 export default ShopTopbar;

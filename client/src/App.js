@@ -8,11 +8,11 @@ import { connect } from "react-redux";
 import { BreadcrumbsProvider } from "react-breadcrumbs-dynamic";
 
 // home pages
-const HomeFashionSeven = lazy( () => import( "./pages/home/HomePage" ) );
+const HomePage = lazy( () => import( "./pages/home/HomePage" ) );
 const MyOrder = lazy( () => import( "./pages/other/MyOrder" ) );
 
 // shop pages
-const ShopGridStandard = lazy( () => import( "./pages/shop/ShopGridStandard" ) );
+const ShopPage = lazy( () => import( "./pages/shop/ShopGridStandard" ) );
 
 // product pages
 const Product = lazy( () => import( "./pages/shop-product/Product" ) );
@@ -26,17 +26,16 @@ const BlogDetailsStandard = lazy( () =>
 );
 
 // other pages
-const About = lazy( () => import( "./pages/other/About" ) );
 const Contact = lazy( () => import( "./pages/other/Contact" ) );
 const MyAccount = lazy( () => import( "./pages/other/MyAccount" ) );
 const ResetPassword = lazy( () => import( "./pages/auth/ResetPassword" ) );
 const ForgotPassword = lazy( () => import( "./pages/auth/ForgotPassword" ) );
 const LoginRegister = lazy( () => import( "./pages/auth/LoginRegister" ) );
+const Login = lazy( () => import( "./pages/auth/LoginPage" ) );
+const Register = lazy( () => import( "./pages/auth/RegisterPage" ) );
 
 const Cart = lazy( () => import( "./pages/other/Cart" ) );
 const Wishlist = lazy( () => import( "./pages/other/Wishlist" ) );
-const Compare = lazy( () => import( "./pages/other/Compare" ) );
-const Checkout = lazy( () => import( "./pages/other/Checkout" ) );
 
 const NotFound = lazy( () => import( "./pages/other/NotFound" ) );
 const PaymentStatus = lazy( () => import( "./pages/other/PaymentStatus" ) );
@@ -72,20 +71,11 @@ const App = ( props ) =>
 							}
 						>
 							<Switch>
+							    {/* Homepages */ }
 								<Route
 									exact
 									path={ process.env.PUBLIC_URL + "/" }
-									component={ HomeFashionSeven }
-								/>
-
-								{/* Homepages */ }
-								<Route
-									path={ process.env.PUBLIC_URL + "/home-fashion-seven" }
-									component={ HomeFashionSeven }
-								/>
-								<Route
-									path={ process.env.PUBLIC_URL + "/shop-grid-standard" }
-									component={ ShopGridStandard }
+									component={ HomePage }
 								/>
 								{/* Shop pages */ }
 								<Route
@@ -96,7 +86,7 @@ const App = ( props ) =>
 								/>
 								<Route
 									path={ process.env.PUBLIC_URL + "/san-pham" }
-									component={ ShopGridStandard }
+									component={ ShopPage }
 								/>
 
 								<Route
@@ -105,7 +95,6 @@ const App = ( props ) =>
 										<Product { ...routeProps } key={ routeProps.match.params.slug } />
 									) }
 								/>
-								{/* End SP */ }
 
 								{/* Blog pages */ }
 								<Route
@@ -113,14 +102,14 @@ const App = ( props ) =>
 									path={ process.env.PUBLIC_URL + "/tin-tuc" }
 									component={ BlogStandard }
 								/>
-								<Route
+								{/* <Route
 									path={ process.env.PUBLIC_URL + "/m/:slug" }
 									component={ BlogStandardMenu }
 								/>
 								<Route
 									path={ process.env.PUBLIC_URL + "/tag/:slug" }
 									component={ BlogTag }
-								/>
+								/> */}
 								<Route
 									path={ process.env.PUBLIC_URL + "/tin-tuc/:slug" }
 									component={ BlogDetailsStandard }
@@ -131,10 +120,6 @@ const App = ( props ) =>
 								/>
 
 								{/* Other pages */ }
-								<Route
-									path={ process.env.PUBLIC_URL + "/about" }
-									component={ About }
-								/>
 								<Route
 									path={ process.env.PUBLIC_URL + "/lien-he" }
 									component={ Contact }
@@ -147,19 +132,24 @@ const App = ( props ) =>
 									path={ process.env.PUBLIC_URL + "/don-hang" }
 									component={ MyOrder }
 								/>
-								<Route
+								{/* <Route
 									path={ process.env.PUBLIC_URL + "/login-register" }
 									component={ LoginRegister }
+								/> */}
+
+								<Route
+									path={ process.env.PUBLIC_URL + "/dang-nhap" }
+									component={ Login }
 								/>
 
 								<Route
-									path={ process.env.PUBLIC_URL + "/auth/forgot-password" }
+									path={ process.env.PUBLIC_URL + "/dang-ky" }
+									component={ Register }
+								/>
+
+								<Route
+									path={ process.env.PUBLIC_URL + "/quen-mat-khau" }
 									component={ ForgotPassword }
-								/>
-
-								<Route
-									path={ process.env.PUBLIC_URL + "/reset-password/:token" }
-									component={ ResetPassword }
 								/>
 
 								<Route
@@ -167,16 +157,8 @@ const App = ( props ) =>
 									component={ Cart }
 								/>
 								<Route
-									path={ process.env.PUBLIC_URL + "/wishlist" }
+									path={ process.env.PUBLIC_URL + "/danh-sach-yeu-thich" }
 									component={ Wishlist }
-								/>
-								<Route
-									path={ process.env.PUBLIC_URL + "/compare" }
-									component={ Compare }
-								/>
-								<Route
-									path={ process.env.PUBLIC_URL + "/checkout" }
-									component={ Checkout }
 								/>
 
 								<Route

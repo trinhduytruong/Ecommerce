@@ -17,7 +17,7 @@ export const addToCart = (
   return (dispatch) => {
     let token = getItem("access_token");
     if (!token) {
-      window.location.href = "/login-register";
+      window.location.href = "/dang-nhap";
     } else {
       if (addToast) {
         addToast("Thêm sản phẩm vào giỏ hàng", {

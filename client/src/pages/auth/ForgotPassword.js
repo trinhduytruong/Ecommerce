@@ -118,7 +118,7 @@ const ForgotPassword = ({ location, isShowLoading }) => {
                           Bạn chưa có tài khoản? Đăng ký
                           <u className="text-info">
                             <Link
-                              to={"/login-register?tab=r"}
+                              to={"/dang-ky"}
                               className="font-italic text-primary  mx-2"
                             >
                               tại đây

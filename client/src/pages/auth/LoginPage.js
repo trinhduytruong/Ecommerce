@@ -10,7 +10,7 @@ import Breadcrumb from "../../wrappers/breadcrumb/Breadcrumb";
 import { toggleShowLoading } from "../../redux/actions/common";
 import { useDispatch } from "react-redux";
 import { API_SERVICE } from "../../helpers/apiHelper";
-import { Alert, Button, Form } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 import { checkValidate } from "../../helpers/common";
 import { useToasts } from "react-toast-notifications";
 
@@ -23,22 +23,11 @@ const FORM_LOGIN = {
   },
 };
 
-const FORM_REGISTER = {
-  name: { value: "", name: "Họ và tên", rules: { required: true } },
-  email: { value: "", name: "Email", rules: { required: true } },
-  password: {
-    value: "",
-    name: "Mật khẩu",
-    rules: { required: true, minLength: 6 },
-  },
-};
-const LoginRegister = ({ location }) => {
+const Login = ({ location }) => {
   const { pathname } = location;
   const [form, setForm] = useState({ ...FORM_LOGIN });
-  const [formRegister, setFormRegister] = useState({ ...FORM_REGISTER });
 
   const [errors, setErrors] = useState(null);
-  const [errorsRegister, setErrorsRegister] = useState(null);
   const [tab, setTab] = useState(null);
   const { addToast } = useToasts();
 
@@ -50,13 +39,6 @@ const LoginRegister = ({ location }) => {
   }, [location.search]);
 
   const dispatch = useDispatch();
-
-  const resetForm = () => {
-    setForm({ ...FORM_LOGIN });
-    setFormRegister({ ...FORM_REGISTER });
-    setErrorsRegister(null);
-    setErrors(null);
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -88,51 +70,18 @@ const LoginRegister = ({ location }) => {
     }
   };
 
-  const handleSubmitRegister = async (e) => {
-    e.preventDefault();
-    let errorData = checkValidate(formRegister);
-    if (errorData) {
-      console.log("errorData -----> ", errorData, formRegister);
-      setErrorsRegister({ ...errorData });
-      return;
-    }
-    let body = Object.keys(formRegister).reduce((newItem, key) => {
-      newItem[key] = formRegister[key]?.value?.trim();
-      return newItem;
-    }, {});
-    dispatch(toggleShowLoading(true));
-    const response = await API_SERVICE.post("auth/register", {
-      ...body,
-      user_type: "USER",
-    });
-    dispatch(toggleShowLoading(false));
-    console.log("response --------> ", response);
-    if (response?.status == "success" && response?.data) {
-      addToast("Đăng ký thành công", {
-        appearance: "success",
-        autoDismiss: true,
-        placement: "top-right",
-      });
-      // localStorage.setItem( 'access_token', response?.data?.token );
-      // localStorage.setItem( 'user', JSON.stringify( response?.data?.user ) );
-      window.location.href = "/login-register";
-    } else {
-      addToast(response?.message, { appearance: "error", autoDismiss: true });
-    }
-  };
-
   return (
     <Fragment>
       <MetaTags>
-        <title>Đăng nhập | Đăng ký</title>
+        <title>Đăng nhập</title>
         <meta
           name="description"
-          content="Compare page of flone react minimalist eCommerce template."
+          content="Compare page of flone react minimalist eCommerce."
         />
       </MetaTags>
       <BreadcrumbsItem to={process.env.PUBLIC_URL + "/"}>Home</BreadcrumbsItem>
       <BreadcrumbsItem to={process.env.PUBLIC_URL + pathname}>
-        Đăng nhập | Đăng ký
+        Đăng nhập
       </BreadcrumbsItem>
       <LayoutOne headerTop="visible">
         {/* breadcrumb */}
@@ -147,11 +96,6 @@ const LoginRegister = ({ location }) => {
                       <Nav.Item>
                         <Nav.Link eventKey="login">
                           <h4>Đăng nhập</h4>
-                        </Nav.Link>
-                      </Nav.Item>
-                      <Nav.Item>
-                        <Nav.Link eventKey="register">
-                          <h4>Đăng ký</h4>
                         </Nav.Link>
                       </Nav.Item>
                     </Nav>
@@ -226,103 +170,14 @@ const LoginRegister = ({ location }) => {
                                   <span>Đăng nhập</span>
                                 </button>
                               </div>
-                            </Form>
-                          </div>
-                        </div>
-                      </Tab.Pane>
-                      <Tab.Pane eventKey="register">
-                        <div className="login-form-container">
-                          <div className="login-register-form">
-                            <Form onSubmit={handleSubmitRegister}>
-                              <Form.Group controlId="formName">
-                                <Form.Label>Họ và tên </Form.Label>
-                                <Form.Control
-                                  type="text"
-                                  placeholder="Nhập họ và tên"
-                                  className="mb-1"
-                                  value={formRegister?.name?.value}
-                                  onChange={(e) => {
-                                    setFormRegister({
-                                      ...formRegister,
-                                      name: {
-                                        ...formRegister.name,
-                                        value: e?.target?.value,
-                                      },
-                                    });
-                                    setErrorsRegister({
-                                      ...errorsRegister,
-                                      name: null,
-                                    });
-                                  }}
-                                  isInvalid={!!errorsRegister?.name}
-                                />
-                                {errorsRegister?.name && (
-                                  <span className="text-danger">
-                                    {errorsRegister?.name}
-                                  </span>
-                                )}
-                              </Form.Group>
-                              <Form.Group controlId="formEmail">
-                                <Form.Label>Email </Form.Label>
-                                <Form.Control
-                                  type="email"
-                                  placeholder="Nhập email"
-                                  className="mb-1"
-                                  value={formRegister?.email?.value}
-                                  onChange={(e) => {
-                                    setFormRegister({
-                                      ...formRegister,
-                                      email: {
-                                        ...formRegister.email,
-                                        value: e?.target?.value,
-                                      },
-                                    });
-                                    setErrorsRegister({
-                                      ...errorsRegister,
-                                      email: null,
-                                    });
-                                  }}
-                                  isInvalid={!!errorsRegister?.email}
-                                />
-                                {errorsRegister?.email && (
-                                  <span className="text-danger">
-                                    {errorsRegister?.email}
-                                  </span>
-                                )}
-                              </Form.Group>
-
-                              <Form.Group controlId="formPassword">
-                                <Form.Label>Mật khẩu</Form.Label>
-                                <Form.Control
-                                  type="password"
-                                  placeholder="Nhập mật khẩu"
-                                  className="mb-1"
-                                  value={formRegister?.password?.value}
-                                  onChange={(e) => {
-                                    setFormRegister({
-                                      ...formRegister,
-                                      password: {
-                                        ...formRegister.password,
-                                        value: e?.target?.value,
-                                      },
-                                    });
-                                    setErrorsRegister({
-                                      ...errorsRegister,
-                                      password: null,
-                                    });
-                                  }}
-                                  isInvalid={!!errorsRegister?.password}
-                                />
-                                {errorsRegister?.password && (
-                                  <span className="text-danger">
-                                    {errorsRegister?.password}
-                                  </span>
-                                )}
-                              </Form.Group>
-                              <div className="button-box d-flex justify-content-end align-items-center">
-                                <button type="submit">
-                                  <span>Đăng ký</span>
-                                </button>
+                              <div className="button-box d-flex justify-content-between align-items-center">
+                              <div className="login-toggle-btn p-0">
+                                  <Link
+                                    to="/dang-ky"
+                                  >
+                                    Bạn chưa có tài khoản?
+                                  </Link>
+                                </div>
                               </div>
                             </Form>
                           </div>
@@ -340,8 +195,8 @@ const LoginRegister = ({ location }) => {
   );
 };
 
-LoginRegister.propTypes = {
+Login.propTypes = {
   location: PropTypes.object,
 };
 
-export default LoginRegister;
+export default Login;

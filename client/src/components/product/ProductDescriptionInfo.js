@@ -196,7 +196,7 @@ const ProductDescriptionInfo = ({
                                 disabled={productCartQty >= productStock}
                             >
                                 {" "}
-                                Add To Cart{" "}
+                                Thêm vào giỏ hàng{" "}
                             </button>
                         ) : (
                             <button disabled>Out of Stock</button>
@@ -260,7 +260,7 @@ const ProductDescriptionInfo = ({
             ) : (
                 ""
             )}
-			
+
             {product.labels?.length > 0 ? (
                 <div className="pro-details-meta">
                     <span><b>Tags</b> :</span>
@@ -279,36 +279,6 @@ const ProductDescriptionInfo = ({
             ) : (
                 ""
             )}
-
-            {/* <div className="pro-details-social">
-                <ul>
-                    <li>
-                        <a href="//facebook.com">
-                            <i className="fa fa-facebook"/>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="//dribbble.com">
-                            <i className="fa fa-dribbble"/>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="//pinterest.com">
-                            <i className="fa fa-pinterest-p"/>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="//twitter.com">
-                            <i className="fa fa-twitter"/>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="//linkedin.com">
-                            <i className="fa fa-linkedin"/>
-                        </a>
-                    </li>
-                </ul>
-            </div> */}
         </div>
     );
 };
