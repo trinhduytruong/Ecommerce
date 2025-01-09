@@ -39,6 +39,7 @@ public class AuthService {
 
     public AuthResponse register(RegisterRequest registerRequest) {
         try {
+            logger.info("User request register: " + registerRequest.getEmail());
             UserView user = new UserView();
             Optional<UserView> userViewOptional = userRepository.findByEmail(registerRequest.getEmail());
             if (userViewOptional.isPresent()) {
@@ -65,6 +66,7 @@ public class AuthService {
 
     public Optional<AuthResponse> login(LoginRequest loginRequest)  {
         try {
+            logger.info("User request login: " + loginRequest.getEmail());
             Optional<UserView> userOpt = userRepository.findByEmail(loginRequest.getEmail());
             if (userOpt.isEmpty()) {
                 throw new RuntimeException("Tài khoản không tồn tại.");
@@ -74,7 +76,12 @@ public class AuthService {
 
             }
             return Optional.of(new AuthResponse(this.jwtTokenUtil.generateToken(userOpt.get().getEmail()), userOpt.get())); // Tạo JWT token dựa trên email
+        } catch (RuntimeException e) {
+            // Ghi log và ném lại ngoại lệ gốc
+            logger.error("RuntimeException: " + e.getMessage(), e);
+            throw e;
         } catch (Exception e) {
+            // Ghi log cho các ngoại lệ khác
             logger.error("Exception: " + e.getMessage(), e);
             throw new RuntimeException("Đăng nhập thất bại.");
         }
@@ -89,7 +96,7 @@ public class AuthService {
         user.setRemember_token(this.emailService.generateResetToken(32));
         user.setEmail_verified_at(new Date());
         this.userRepository.save(user);
-        String url = "http://localhost:4223/reset-password/"+ user.getRemember_token();
+        String url = "http://localhost:4223/doi-mat-khau/"+ user.getRemember_token();
         String htmlContent =
                 "<div style=\"font-family: Arial, sans-serif; max-width: 600px; margin: auto; padding: 20px; border: 1px solid #ddd; border-radius: 10px;\">" +
                         "<h2 style=\"color: #333;\">Đặt lại mật khẩu của bạn</h2>" +

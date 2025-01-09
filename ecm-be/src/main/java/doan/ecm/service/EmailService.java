@@ -23,7 +23,7 @@ public class EmailService {
     private JavaMailSender javaMailSender;
 
 //    @Value("app.mail.bcc")
-    private String bccMail = "svdtxl123@gmail.com";
+    private String bccMail = "tfashion@gmail.com";
 
     // Độ dài của token (32 ký tự)
     private static final int TOKEN_LENGTH = 32;

@@ -153,6 +153,11 @@ const App = ( props ) =>
 								/>
 
 								<Route
+									path={ process.env.PUBLIC_URL + "/doi-mat-khau/:token" }
+									component={ ResetPassword }
+								/>
+
+								<Route
 									path={ process.env.PUBLIC_URL + "/gio-hang" }
 									component={ Cart }
 								/>
