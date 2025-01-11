@@ -44,6 +44,7 @@ const ArticleManager = () =>
 	const [ productToDelete, setProductToDelete ] = useState( null );
 	const [ imageData, setImageData ] = useState( null );
 	const [ contentArticle, setContent ] = useState( '' );
+	const [ discriptionArticle, setDiscriptionArticle ] = useState( '' );
 	const [ loading, setLoading ] = useState( false );
 	const defaultImage = "https://via.placeholder.com/150";
 	const [ searchParams, setSearchParams ] = useSearchParams();
@@ -87,7 +88,7 @@ const ArticleManager = () =>
 
 		setTags( tagData || [] );
 		setMenus( menuData || [] );
-		
+
 	}
 
 
@@ -103,15 +104,16 @@ const ArticleManager = () =>
 		} ).then( r => { } );
 	}, [ searchParams ] );
 
-	
+
 
 	const handleAddEditProduct = async ( values ) =>
 	{
+		console.log('Submitted values to API:', values);
 		const tagIds = selectedTags?.map( tag => tag?.value );
 		const dataModel = {
 			...values,
 			avatar: values?.avatar || editingProduct?.avatar || defaultImage,
-			content: contentArticle,
+			content: values?.content,
 			tags: tagIds,
 			slug: createSlug( values.name )
 		};
@@ -130,6 +132,7 @@ const ArticleManager = () =>
 		setLoading( false )
 		if ( response?.status == 'success' )
 		{
+			console.log('API saved content successfully:', response?.data);
 			toast.success( "Thao tác thành công" );
 			setEditingProduct( null );
 			setShowProductModal( false );
@@ -164,6 +167,7 @@ const ArticleManager = () =>
 	const openProductModal = ( dataEdit = null ) =>
 	{
 		setEditingProduct( dataEdit );
+		setContent(dataEdit);
 		setShowProductModal( true );
 		if ( dataEdit && dataEdit.avatar ) setImageData( dataEdit.avatar );
 		if ( dataEdit && dataEdit.content ) setContent( dataEdit.content );
@@ -187,7 +191,7 @@ const ArticleManager = () =>
 
 	const handlePageChange = ( newPage ) =>
 	{
-		console.info( "===========[] ===========[1111] : " );
+		console.info( "===========[] =========== : " );
 		setSearchParams( { ...searchCriteria, page: newPage } );
 	};
 
@@ -290,6 +294,8 @@ const ArticleManager = () =>
 				defaultImage={ defaultImage }
 				content={ contentArticle }
 				setContent={ setContent }
+				discription = { discriptionArticle}
+				setDiscription = { setDiscriptionArticle}
 				handleAddEditProduct={ handleAddEditProduct }
 				loading={ loading }
 				tags={tags}

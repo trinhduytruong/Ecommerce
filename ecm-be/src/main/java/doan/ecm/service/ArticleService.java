@@ -93,6 +93,7 @@ public class ArticleService {
                 article.setStatus(articleRequest.getStatus() != null ? articleRequest.getStatus() : "published");
                 article.setAvatar(articleRequest.getAvatar());
                 article.setDescription(articleRequest.getDescription());
+                article.setContent(articleRequest.getContent());
                 article.setUpdated_at(new Date());
 
                 if (articleRequest.getTags() != null && !articleRequest.getTags().isEmpty()) {
