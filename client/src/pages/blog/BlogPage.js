@@ -10,7 +10,7 @@ import BlogPosts from "../../wrappers/blog/BlogPosts";
 import { API_SERVICE, get } from "../../helpers/apiHelper";
 import { useDispatch } from "react-redux";
 import { toggleShowLoading } from "../../redux/actions/common";
-import { INIT_PAGING } from "../../helpers/constant";
+import { INIT_PAGING, INIT_PAGING_BLOG } from "../../helpers/constant";
 
 import { useLocation } from "react-router-dom";
 import { PaginationPage } from "../../components/common/paging";
@@ -21,7 +21,7 @@ const BlogPage = ({ location }) => {
   const [menus, setMenus] = useState([]);
   const [tags, setTags] = useState([]);
   const [params, setParams] = useState({});
-  const [paging, setPaging] = useState({ ...INIT_PAGING });
+  const [paging, setPaging] = useState({ ...INIT_PAGING_BLOG });
   const dispatch = useDispatch();
 
   const { search } = useLocation();
@@ -114,6 +114,8 @@ const BlogPage = ({ location }) => {
                         return <BlogPosts article={article} key={key} />;
                       })}
                   </div>
+
+                  {/* blog pagination */}
                   {paging.total > 0 && (
                     <div className="mx-auto d-flex justify-content-center my-4">
                       <PaginationPage
@@ -123,8 +125,6 @@ const BlogPage = ({ location }) => {
                       />
                     </div>
                   )}
-
-                  {/* blog pagination */}
                   {/* <BlogPagination getListData={getListData} params={params}/> */}
                 </div>
               </div>

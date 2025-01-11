@@ -102,12 +102,6 @@ const Product = ({location}) => {
 					params={pagingVote}
                     productFullDesc={product?.description}
                 />
-
-                {/* related product slider */}
-                {/*<RelatedProductSlider*/}
-                {/*    spaceBottomClass="pb-95"*/}
-                {/*    category={product.category_id}*/}
-                {/*/>*/}
             </LayoutOne>
         </Fragment>
     );

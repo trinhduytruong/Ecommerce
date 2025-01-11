@@ -29,6 +29,13 @@ export const INIT_PAGING = {
 	total_page: 0
 }
 
+export const INIT_PAGING_BLOG = {
+	page: 1,
+	page_size: 4,
+	total: 0,
+	total_page: 0
+}
+
 export const ORDER_STATUS = [
 	{
 		value: 'pending',
