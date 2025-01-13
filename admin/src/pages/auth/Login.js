@@ -137,19 +137,6 @@ const Login = () => {
                                                     <u>tại đây</u></Link>
                                                 </p>
                                             </div>
-                                            {/* <div className="text-center d-flex justify-content-between mt-4">
-                                                <p>Code by <Link to={'/'}
-                                                                 className="font-italic text-muted"><u>ADM</u></Link>
-                                                </p>
-                                                <Link to={'/'} className="font-italic text-danger"
-                                                      onClick={(e) => {
-                                                          e.preventDefault();
-                                                          startTransition(() => {
-                                                              navigate("/");
-                                                          });
-                                                      }}
-                                                >Trang chủ</Link>
-                                            </div> */}
                                         </Form>
                                     )}
                                 </Formik>

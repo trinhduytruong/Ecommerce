@@ -118,9 +118,6 @@ const ResetPassword = () => {
                                                           });
                                                       }}>Trang chủ</Link>
                                             </div>
-                                            <div className="text-center d-flex justify-content-between mt-4">
-                                                <p>Code by <Link to={'/'} className="font-italic text-muted"><u>Phuphan</u></Link></p>
-                                            </div>
                                         </Form>
                                     )}
                                 </Formik>
