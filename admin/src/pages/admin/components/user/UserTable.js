@@ -5,7 +5,7 @@ import { FaEdit, FaTrash, FaEye, FaListUl } from 'react-icons/fa';
 
 const UserTable = ( { users, openUserModal, setUserToDelete, setShowDeleteModal } ) =>
 {
-	const defaultImage = "https://via.placeholder.com/150";
+	const defaultImage = "https://sbcf.fr/wp-content/uploads/2018/03/sbcf-default-avatar.png";
 	const genStatus = (status) =>  {
 		if(status == 1) {
 			return <span className='text text-success'>Hoạt động</span>
