@@ -18,13 +18,13 @@ const ProductImageDescription = ({
                                      wishlistItems,
                                      compareItems
                                  }) => {
-    // const wishlistItem = wishlistItems?.filter(
-    //     wishlistItem => wishlistItem.id === product.id
-    // )[0];
+    const wishlistItem = wishlistItems?.filter(
+        wishlistItem => wishlistItem.id === product.id
+    )[0];
     // const compareItem = compareItems?.filter(
     //     compareItem => compareItem.id === product.id
     // )[0];
-    const wishlistItem = [];
+    // const wishlistItem = [];
     const compareItem = [];
 
     const {addToast} = useToasts();
@@ -35,7 +35,7 @@ const ProductImageDescription = ({
         discountedPrice
     );
 
-    console.info("===========[] ===========[galleryType] : ",galleryType);
+    console.info("[galleryType] : ",galleryType);
 
     return (
         <div

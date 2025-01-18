@@ -3,6 +3,7 @@ import React, {Fragment, useState} from "react";
 import {Link} from "react-router-dom";
 import {useToasts} from "react-toast-notifications";
 import {formatCurrencyVND, getDiscountPrice} from "../../helpers/product";
+import { truncateText } from "../../helpers/common";
 import Rating from "./sub-components/ProductRating";
 import ProductModal from "./ProductModal";
 import ImageWithFallback from "../ImageWithFallback";
@@ -48,7 +49,7 @@ const ProductGridListSingle = ({
                             <ImageWithFallback
                                 src={product?.avatar}
                                 alt={product?.name}
-                                defaultSrc="/assets/img/blog/blog-details-2.jpg"
+                                defaultSrc=""
                             />
                             {/*{product.image.length > 1 ? (*/}
                             {/*    <img*/}
@@ -137,7 +138,7 @@ const ProductGridListSingle = ({
                     <div className="product-content text-center">
                         <h3>
                             <Link to={product.slug ? `/sp/${product?.slug}`: `/san-pham/${product.id}`}>
-                                {product.name}
+                                {truncateText(product?.name, 29)}
                             </Link>
                         </h3>
                         {product.rating && product.rating > 0 ? (
@@ -280,7 +281,7 @@ const ProductGridListSingle = ({
                                         )}
                                     </div>
 
-                                    <div className="shop-list-wishlist ml-10">
+                                    {/* <div className="shop-list-wishlist ml-10">
                                         <button
                                             className={wishlistItem !== undefined ? "active" : ""}
                                             disabled={wishlistItem !== undefined}
@@ -293,21 +294,7 @@ const ProductGridListSingle = ({
                                         >
                                             <i className="pe-7s-like"/>
                                         </button>
-                                    </div>
-                                    <div className="shop-list-compare ml-10">
-                                        <button
-                                            className={compareItem !== undefined ? "active" : ""}
-                                            disabled={compareItem !== undefined}
-                                            title={
-                                                compareItem !== undefined
-                                                    ? "Added to compare"
-                                                    : "Add to compare"
-                                            }
-                                            onClick={() => addToCompare(product, addToast)}
-                                        >
-                                            <i className="pe-7s-shuffle"/>
-                                        </button>
-                                    </div>
+                                    </div> */}
                                 </div>
                             </div>
                         </div>

@@ -46,7 +46,7 @@ const ProductDescriptionTab = (
                                     </ul>
                                 </div>
                             </Tab.Pane>
-                            <Tab.Pane eventKey="productDescription">
+                            <Tab.Pane style={{ fontSize: "15px" }} eventKey="productDescription">
                                 {productFullDesc}
                             </Tab.Pane>
                             <Tab.Pane eventKey="productReviews">
@@ -84,7 +84,7 @@ const ProductDescriptionTab = (
                                                     </div>
                                                 </div>
                                             </div>
-											}) : ''}
+											}) : <div style={{ fontSize: "15px" }}>Chưa có đánh giá</div>}
                                         </div>
                                     </div>
                                 </div>

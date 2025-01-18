@@ -251,6 +251,7 @@
     overflow: hidden;
     img {
       width: 100%;
+      // height: 270px;
     }
 
     &-badges {
@@ -456,7 +457,7 @@
     width: 720px;
     max-width: 720px;
   }
-  
+
   @media #{$xs-layout} {
     width: 100%;
     max-width: 100%;

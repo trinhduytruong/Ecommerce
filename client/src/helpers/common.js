@@ -122,5 +122,12 @@ export const formatTime = (time, format) => {
 export const logout = () => {
   removeItem("user");
   removeItem("access_token");
-  window.location.href = "/login-register";
+  window.location.href = "/";
+};
+
+export const truncateText = (text, maxLength) => {
+  if (text && text.length > maxLength) {
+      return text.slice(0, maxLength) + ' ...';
+  }
+  return text;
 };

@@ -35,7 +35,7 @@ const ShopSidebar = ( { products, getSortParams, sideSpaceClass, params } ) =>
 		const res = await API_SERVICE.get( 'categories', param );
 		if ( res?.status == 'success' )
 		{
-			setCategories( res?.data?.data ); // Gán dữ liệu vào state
+			setCategories( res?.data?.data );
 		}
 	}
 
@@ -44,7 +44,7 @@ const ShopSidebar = ( { products, getSortParams, sideSpaceClass, params } ) =>
 		const res = await API_SERVICE.get( 'brands', param );
 		if ( res?.status == 'success' )
 		{
-			setBrands( res?.data?.data ); // Gán dữ liệu vào state
+			setBrands( res?.data?.data );
 		}
 	}
 
@@ -71,7 +71,7 @@ const ShopSidebar = ( { products, getSortParams, sideSpaceClass, params } ) =>
 				categories={ brands }
 				title={'Nhãn hàng'}
 				classKey={ 'brand' }
-				
+
 				key_param={'brand_id'}
 
 				getSortParams={ getSortParams }

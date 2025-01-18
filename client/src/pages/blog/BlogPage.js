@@ -32,20 +32,21 @@ const BlogPage = ({ location }) => {
 
   const getListData = async (filters) => {
     let param = {
+      ...paging,
       ...filters,
     };
     setParams(param);
+    setArticles([]);
 
     console.log("filter-----> ", filters);
     dispatch(toggleShowLoading(true));
     const res = await API_SERVICE.get("articles", param);
+    console.log("API articles response:", res);
 
     dispatch(toggleShowLoading(false));
     if (res?.status == "success") {
       let result =
-        res?.data?.data?.map((item) => {
-          return item;
-        }) || [];
+        res?.data?.data || [];
       setArticles(result);
       setPaging(res?.data?.meta);
     }
@@ -82,7 +83,7 @@ const BlogPage = ({ location }) => {
   };
 
   useEffect(() => {
-    console.log(queryParams, search, name, menu_id, tag_ids);
+    console.log("abc: ", queryParams, search, name, menu_id, tag_ids);
     getListData({ ...paging });
     getListMenus({ ...INIT_PAGING, page_size: 1000 });
     getListTags({ ...INIT_PAGING, page_size: 1000 });
@@ -116,15 +117,17 @@ const BlogPage = ({ location }) => {
                   </div>
 
                   {/* blog pagination */}
-                  {paging.total > 0 && (
-                    <div className="mx-auto d-flex justify-content-center my-4">
-                      <PaginationPage
-                        getListData={getListData}
-                        paging={paging}
-                        params={{ ...paging, ...params }}
-                      />
-                    </div>
-                  )}
+                  <div className="pro-pagination-style text-center mt-30">
+                    {paging.total > 0 && (
+                      <div className="mx-auto d-flex justify-content-center my-4">
+                        <PaginationPage
+                          getListData={getListData}
+                          paging={ paging }
+                          params={{ ...paging, ...params }}
+                        />
+                      </div>
+                    )}
+                  </div>
                   {/* <BlogPagination getListData={getListData} params={params}/> */}
                 </div>
               </div>

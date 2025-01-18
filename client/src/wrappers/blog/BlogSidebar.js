@@ -27,7 +27,6 @@ const BlogSidebar = (props) => {
     useEffect(() => {
         get('articles?page_size=5')
             .then((res) => {
-                console.log('API response:', res); // Log toàn bộ response
                 setArticles(res?.data?.data); // Gán dữ liệu vào state
             })
             .catch((err) => console.error('Failed to fetch data:', err));

@@ -91,7 +91,7 @@ function ProductModal ( props )
 		)
 	};
 
-	
+
 
 	return (
 		<Fragment>
@@ -127,7 +127,7 @@ function ProductModal ( props )
 							</div>
 							{/* <div className="product-small-image-wrapper mt-15">
 								<Swiper { ...thumbnailSwiperParams }>
-									{ product.image?.length > 0 && 
+									{ product.image?.length > 0 &&
 										product.image?.map( ( single, key ) =>
 										{
 											return (
@@ -163,8 +163,6 @@ function ProductModal ( props )
 
 										<span>
 											{ formatCurrencyVND( finalproductprice ) }
-
-											{/* { currency.currencySymbol + finalproductprice } */}
 										</span>
 									) }
 								</div>
@@ -321,44 +319,33 @@ function ProductModal ( props )
 													disabled={ productCartQty >= productStock }
 												>
 													{ " " }
-													Add To Cart{ " " }
+													Thêm vào giỏ hàng{ " " }
 												</button>
 											) : (
 												<button disabled>Out of Stock</button>
 											) }
 										</div>
-										{/* <div className="pro-details-wishlist">
+										<div className="pro-details-wishlist">
 											<button
 												className={ wishlistItem !== undefined ? "active" : "" }
 												disabled={ wishlistItem !== undefined }
 												title={
 													wishlistItem !== undefined
-														? "Added to wishlist"
-														: "Add to wishlist"
+														? "Đã thêm vào danh sách yêu thích"
+														: "Thêm vào danh sách yêu thích"
 												}
 												onClick={ () => addToWishlist( product, addToast ) }
 											>
 												<i className="pe-7s-like" />
 											</button>
 										</div>
-										 <div className="pro-details-compare">
-											<button
-												className={ compareItem !== undefined ? "active" : "" }
-												disabled={ compareItem !== undefined }
-												title={
-													compareItem !== undefined
-														? "Added to compare"
-														: "Add to compare"
-												}
-												onClick={ () => addToCompare( product, addToast ) }
-											>
-												<i className="pe-7s-shuffle" />
-											</button>
-										</div>  */}
 									</div>
 								) }
+
 							</div>
-						</div>
+							<div style={{ fontSize: '20px', marginBottom: '10px' }}>Thông tin sản phẩm:</div>
+								<p>{product?.description}</p>
+						    </div>
 					</div>
 				</div>
 			</Modal>

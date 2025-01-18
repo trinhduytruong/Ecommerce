@@ -1,39 +1,33 @@
 import React, {Fragment} from "react";
 import {Link} from "react-router-dom";
 import ImageWithFallback from "../../components/ImageWithFallback";
+import { formatTime, truncateText } from "../../helpers/common";
 
 const BlogPosts = (props) => {
     const {article} = props;
     return (
         <Fragment>
             <div className="col-lg-6 col-md-6 col-sm-12 mb-30">
-                <div className="blog-wrap-2 d-flex flex-column justify-content-between h-100">
+                <div className="blog-wrap-2 d-flex flex-column h-100">
                     <div className="blog-img-2">
                         <Link to={process.env.PUBLIC_URL + `/tin-tuc/${article?.slug || article?.id}`}>
                             <ImageWithFallback
                                 src={article?.avatar}
                                 alt={article?.name}
-                                defaultSrc="https://example.com/default-image.jpg"
+                                defaultSrc=""
                             />
                         </Link>
                     </div>
                     <div className="blog-content-2">
                         <div className="blog-meta-2">
-                            <ul>
-                                <li>{article?.created_at}</li>
-                                <li>
-                                    <Link to={process.env.PUBLIC_URL + `/tin-tuc/${article?.slug || article?.id}`}>
-                                        0 <i className="fa fa-comments-o"/>
-                                    </Link>
-                                </li>
-                            </ul>
+                         {formatTime( article?.created_at, 'HH:mm - DD/MM/yyyy' ) ?? "Chưa cập nhật"}
                         </div>
-                        <h4>
+                        <h4 style={{marginBottom: '10px'}}>
                             <Link to={process.env.PUBLIC_URL + `/tin-tuc/${article?.slug || article?.id}`}>
-                                {article?.name}
+                                {truncateText(article?.name, 29)}
                             </Link>
                         </h4>
-                        <p>{article?.description}</p>
+                        <p style={{height: '42px'}}>{truncateText(article?.description, 85)}</p>
                         <div className="blog-share-comment">
                             <div className="blog-btn-2">
                                 <Link to={process.env.PUBLIC_URL + `/tin-tuc/${article?.slug || article?.id}`}>

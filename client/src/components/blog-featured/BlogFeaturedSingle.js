@@ -2,6 +2,7 @@ import PropTypes from "prop-types";
 import React from "react";
 import {Link} from "react-router-dom";
 import ImageWithFallback from "../ImageWithFallback";
+import { truncateText } from "../../helpers/common";
 
 const BlogFeaturedSingle = ({singlePost}) => {
     return (
@@ -30,7 +31,7 @@ const BlogFeaturedSingle = ({singlePost}) => {
                     <div className="blog-content text-center">
                         <h3>
                             <Link to={process.env.PUBLIC_URL + `/tin-tuc/${singlePost?.slug}`}>
-                                {singlePost.name}
+                                {truncateText(singlePost?.name, 24)}
                             </Link>
                         </h3>
                         <span>

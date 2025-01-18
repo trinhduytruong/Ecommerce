@@ -27,8 +27,8 @@ const Product = ({location}) => {
         if(slug) {
 			get(`products/slug/${slug}`)
             .then((res) => {
-                console.info("[res?.data?.data] : ",res?.data?.data);
-                setProduct(res?.data?.data); // Gán dữ liệu vào state
+                console.info("data: ",res?.data?.data);
+                setProduct(res?.data?.data);
 				if(res?.data?.data) {
 					getVotes({...pagingVote, product_id: res?.data?.data?.id})
 				}
@@ -50,7 +50,7 @@ const Product = ({location}) => {
 					productData = {...productData, image: images};
 					getVotes({...pagingVote, product_id: id})
 				}
-                setProduct(productData); // Gán dữ liệu vào state
+                setProduct(productData);
 
             })
             .catch((err) => console.error('Failed to fetch data:', err));

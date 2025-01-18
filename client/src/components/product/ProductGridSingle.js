@@ -3,11 +3,10 @@ import React, {Fragment, useState} from "react";
 import {Link} from "react-router-dom";
 import {useToasts} from "react-toast-notifications";
 import {formatCurrencyVND, getDiscountPrice} from "../../helpers/product";
-import Rating from "./sub-components/ProductRating";
 import ProductModal from "./ProductModal";
 import ImageWithFallback from "../ImageWithFallback";
-import { onErrorUser } from "../../helpers/common";
 import { DEFAULT_IMAGE } from "../../helpers/constant";
+import { truncateText } from "../../helpers/common";
 
 const ProductGridSingle = ({
                                product,
@@ -134,7 +133,7 @@ const ProductGridSingle = ({
                     <div className="product-content text-center">
                         <h3>
                             <Link to={product.slug ? `/sp/${product?.slug}`: `/san-pham/${product.id}`}>
-                                {product.name}
+                                {truncateText(product?.name, 29)}
                             </Link>
                         </h3>
                         {/*{product.rating && product.rating > 0 ? (*/}
