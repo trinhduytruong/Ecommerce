@@ -84,7 +84,7 @@ const BlogDetailsStandard = ({ location }) => {
   return (
     <Fragment>
       <MetaTags>
-        <title>Chi tiết | Blog Post</title>
+        <title>Chi tiết bài viết</title>
         <meta
           name="description"
           content="Blog post page of flone react minimalist eCommerce template."
