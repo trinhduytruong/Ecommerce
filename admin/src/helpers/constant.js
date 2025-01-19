@@ -5,6 +5,7 @@ export const EMPTY_IMG = emptyImg;
 export const DEFAULT_IMAGE = defaultImg;
 
 export const DEFAULT_IMG = "https://via.placeholder.com/150";
+export const UPLOAD_IMAGE = 'https://png.pngtree.com/png-clipart/20200225/original/pngtree-image-upload-icon-photo-upload-icon-png-image_5279794.jpg';
 
 export const INIT_PAGING = {
 	total: 0,

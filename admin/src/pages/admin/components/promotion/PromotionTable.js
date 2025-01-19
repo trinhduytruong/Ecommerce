@@ -1,6 +1,7 @@
 import React from 'react';
 import {Table, Dropdown, ButtonGroup, Badge, Image} from 'react-bootstrap';
 import { FaListUl } from "react-icons/fa";
+import { UPLOAD_IMAGE } from '../../../../helpers/constant';
 
 const PromotionTable = ({ promotions, openPromotionModal, setPromotionToDelete, setShowDeleteModal }) => {
     const formatDiscount = (promotion) => {
@@ -27,7 +28,7 @@ const PromotionTable = ({ promotions, openPromotionModal, setPromotionToDelete, 
                 <tr key={promotion._id}>
                     <td style={{textAlign: 'center'}}>
                         <Image
-                            src={promotion.programImage || defaultImage}
+                            src={promotion.programImage || UPLOAD_IMAGE}
                             alt={promotion.name}
                             width="60"
                             height="60"

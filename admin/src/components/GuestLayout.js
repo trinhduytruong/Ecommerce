@@ -8,6 +8,7 @@ import categoryService from "../api/categoryService";
 import apiSettingInformation from "../api/apiSettingInformation";
 import { createSlug } from "../helpers/formatters";
 import './GuestLayout.css';
+import { UPLOAD_IMAGE } from '../helpers/constant';
 
 const BookingModal = React.lazy(() => import('./guest/BookingModal'));
 const HomeCarousel = React.lazy(() => import('./../pages/components/slide/HomeCarousel'));
@@ -109,7 +110,7 @@ const GuestLayout = () => {
                                 <Dropdown align="end">
                                     <Dropdown.Toggle as={Nav.Link} id="dropdown-user">
                                         <img
-                                            src={user?.avatar || 'https://via.placeholder.com/150'}
+                                            src={user?.avatar || UPLOAD_IMAGE}
                                             alt="Avatar"
                                             style={{ width: 30, height: 30, borderRadius: '50%', marginRight: 10 }}
                                         />

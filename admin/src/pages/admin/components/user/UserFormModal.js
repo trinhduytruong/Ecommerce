@@ -4,7 +4,7 @@ import { Formik, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { FaSave, FaTimes } from "react-icons/fa";
 import Select from 'react-select';
-import { DEFAULT_IMG } from '../../../../helpers/constant';
+import { DEFAULT_IMG, UPLOAD_IMAGE } from '../../../../helpers/constant';
 import { toast } from 'react-toastify';
 
 import apiUpload from '../../../../api/apiUpload';
@@ -149,10 +149,10 @@ const UserFormModal = ( {
 						<Modal.Body>
 							<Form.Group className={ 'mb-3 d-block' }>
 								<Form.Label>Avatar</Form.Label>
-								<div className='d-flex align-items-center justify-content-center'>
+								<div style={{cursor: "pointer"}} className='d-flex align-items-center justify-content-center'>
 									<Image
-										src={ fileAvatar.url || DEFAULT_IMG }
-										alt={ fileAvatar.url || DEFAULT_IMG }
+										src={ fileAvatar.url || UPLOAD_IMAGE }
+										alt={ fileAvatar.url || UPLOAD_IMAGE }
 										width="90"
 										onClick={ () => document.getElementById( 'album-upload' ).click() }
 										height="90"
@@ -187,7 +187,7 @@ const UserFormModal = ( {
 
 							<Form.Group className={ 'mb-3' }>
 								<Form.Label>Trạng thái</Form.Label>
-								<Field as="select" name="status" 
+								<Field as="select" name="status"
 									className="form-control">
 									<option value="">Chọn giá trị</option>
 									<option value="1">Hoạt động</option>

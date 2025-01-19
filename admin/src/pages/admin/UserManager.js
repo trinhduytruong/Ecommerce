@@ -108,7 +108,6 @@ const UserManager = () => {
                         <Nav.Item>
                             <Nav.Link as={Link} to="/admin/users">Users</Nav.Link>
                         </Nav.Item>
-                        <Breadcrumb.Item active>Index</Breadcrumb.Item>
                     </Breadcrumb>
                 </Col>
             </Row>

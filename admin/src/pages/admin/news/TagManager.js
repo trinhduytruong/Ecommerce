@@ -134,9 +134,8 @@ const MenuManager = () =>
 							<Nav.Link as={ Link } to="/">Home</Nav.Link>
 						</Nav.Item>
 						<Nav.Item>
-							<Nav.Link as={ Link } to="/admin/news/tag">Tags</Nav.Link>
+							<Nav.Link as={ Link } to="/admin/news/tag">Từ khóa</Nav.Link>
 						</Nav.Item>
-						<Breadcrumb.Item active>Index</Breadcrumb.Item>
 					</Breadcrumb>
 				</Col>
 			</Row>
@@ -145,9 +144,6 @@ const MenuManager = () =>
 					<div className="d-flex justify-content-between align-items-center mb-3">
 						<h2>Quản lý từ khoá</h2>
 						<div>
-							{/*<Button variant="secondary" className="me-2" onClick={() => setShowSearchModal(true)}>*/ }
-							{/*    Tìm kiếm*/ }
-							{/*</Button>*/ }
 							<Button size={ 'sm' } variant="primary" onClick={ () => openMenuModal( null ) }>
 								Thêm mới <FaPlusCircle className={ 'mx-1' } />
 							</Button>

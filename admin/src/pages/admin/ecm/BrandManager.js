@@ -120,7 +120,6 @@ const BrandManager = () =>
 						<Nav.Item>
 							<Nav.Link as={ Link } to="/admin/ecommerce/brands">Thương hiệu</Nav.Link>
 						</Nav.Item>
-						<Breadcrumb.Item active>Danh sách</Breadcrumb.Item>
 					</Breadcrumb>
 				</Col>
 			</Row>

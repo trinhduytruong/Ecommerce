@@ -31,44 +31,10 @@ const App = () =>
 	return (
 		<Router>
 			<Routes>
-				{/* Routes dành cho guest, có thể truy cập bởi cả guest và người dùng đã đăng nhập */ }
-				{/* <Route path="/*" element={<GuestLayout />}>
-                    <Route index element={
-                        <Suspense fallback={<div>Loading Home...</div>}>
-                            <Home />
-                        </Suspense>
-                    } />
-                    <Route path="product" element={
-                        <Suspense fallback={<div>Loading Products...</div>}>
-                            <Product />
-                        </Suspense>
-                    } />
-                    <Route path="p/:slug" element={
-                        <Suspense fallback={<div>Loading Product Details...</div>}>
-                            <ProductDetail />
-                        </Suspense>
-                    } />
-                    <Route path="cart" element={
-                        <Suspense fallback={<div>Loading Cart...</div>}>
-                            <Cart />
-                        </Suspense>
-                    } />
-                    <Route path="c/:slug" element={
-                        <Suspense fallback={<div>Loading Category...</div>}>
-                            <Category />
-                        </Suspense>
-                    } />
-                </Route> */}
-
 				<Route path="/" element={ <Navigate to="/admin" replace /> } />
 
-				{/* Sử dụng AdminRoutes */ }
 				<Route path="/admin/*" element={ <AdminRoutes /> } />
 
-				{/* Sử dụng UserRoutes */ }
-				{/* <Route path="/user/*" element={<UserRoutes />} /> */ }
-
-				{/* Routes dành cho login và register */ }
 				<Route path="login" element={ <AuthLayout /> }>
 					<Route index element={ <Login /> } />
 				</Route>

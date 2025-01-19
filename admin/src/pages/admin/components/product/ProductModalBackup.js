@@ -9,6 +9,7 @@ import {formatCurrencyInput} from "../../../../helpers/formatters";
 import productLabelService from "../../../../api/productLabelService";
 import Select from "react-select";
 import {FaSave} from "react-icons/fa"; // Import categoryService để gọi API
+import { UPLOAD_IMAGE } from '../../../../helpers/constant';
 
 const ProductModalBackup = ({
                           showProductModal,
@@ -73,7 +74,7 @@ const ProductModalBackup = ({
                                             <Spinner animation="border" />
                                         ) : (
                                             <img
-                                                src={productImage || defaultImage}
+                                                src={productImage || UPLOAD_IMAGE}
                                                 alt="Product"
                                                 className="img-fluid"
                                                 style={{ width: '100%', height: 'auto' }}
@@ -151,18 +152,6 @@ const ProductModalBackup = ({
                                                 </Field>
                                                 <ErrorMessage name="category" component="div" className="text-danger" />
                                             </Form.Group>
-                                            {/*<Form.Group className="mb-3">*/}
-                                            {/*    <Form.Label>Product Labels</Form.Label>*/}
-                                            {/*    <Select*/}
-                                            {/*        isMulti*/}
-                                            {/*        options={productLabels}*/}
-                                            {/*        value={productLabels?.filter(label => values.productsLabels.includes(label.value))}*/}
-                                            {/*        onChange={(selectedOptions) => {*/}
-                                            {/*            const selectedValues = selectedOptions ? selectedOptions?.map(option => option.value) : [];*/}
-                                            {/*            setFieldValue("productsLabels", selectedValues);*/}
-                                            {/*        }}*/}
-                                            {/*    />*/}
-                                            {/*</Form.Group>*/}
 
                                             <Form.Group className="mb-3">
                                                 <Form.Label>Product Labels</Form.Label>

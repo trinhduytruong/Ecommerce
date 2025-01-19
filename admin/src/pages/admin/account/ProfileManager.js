@@ -6,6 +6,7 @@ import apiUpload from "../../../api/apiUpload";
 import { toast } from 'react-toastify';
 import { useDispatch } from 'react-redux';
 import { setUserData } from '../../../redux/slices/userSlice';
+import { UPLOAD_IMAGE } from '../../../helpers/constant';
 
 const ProfileManager = () => {
     const [user, setUser] = useState(null);
@@ -98,7 +99,6 @@ const ProfileManager = () => {
                         <Nav.Item>
                             <Nav.Link as={Link} to="/admin/user">Tài khoản</Nav.Link>
                         </Nav.Item>
-                        <Breadcrumb.Item active>Index</Breadcrumb.Item>
                     </Breadcrumb>
                 </Col>
             </Row>
@@ -144,18 +144,6 @@ const ProfileManager = () => {
                                     />
                                 </Form.Group>
                             </Col>
-                            {/*<Col md={6}>*/}
-                            {/*    <Form.Group className="mb-3">*/}
-                            {/*        <Form.Label>Email</Form.Label>*/}
-                            {/*        <Form.Control*/}
-                            {/*            type="email"*/}
-                            {/*            name="email"*/}
-                            {/*            value={user.email}*/}
-                            {/*            onChange={handleInputChange}*/}
-                            {/*            readOnly*/}
-                            {/*        />*/}
-                            {/*    </Form.Group>*/}
-                            {/*</Col>*/}
                         </Row>
 
 
@@ -165,7 +153,7 @@ const ProfileManager = () => {
                             <Form.Label>Ảnh đại diện</Form.Label>
                             <div className="mb-3">
                                 <img
-                                    src={previewAvatar || 'https://via.placeholder.com/150'}
+                                    src={previewAvatar || UPLOAD_IMAGE}
                                     alt="Avatar"
                                     className="img-fluid rounded-circle"
                                     style={{ width: '150px', height: '150px', objectFit: 'cover' }}

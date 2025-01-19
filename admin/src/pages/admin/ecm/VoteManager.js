@@ -36,7 +36,7 @@ const CategoryManager = () => {
 				setVotes(response.data.data);
 				setMeta(response.data.meta);
 			}
-            
+
         } catch (error) {
             console.error("Error fetching votes:", error);
         }
@@ -82,7 +82,6 @@ const CategoryManager = () => {
                         <Nav.Item>
                             <Nav.Link as={Link} to="/admin/ecommerce/vote">Đánh giá</Nav.Link>
                         </Nav.Item>
-                        <Breadcrumb.Item active>Index</Breadcrumb.Item>
                     </Breadcrumb>
                 </Col>
             </Row>

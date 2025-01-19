@@ -141,9 +141,8 @@ const UserManager = () =>
 							<Nav.Link as={ Link } to="/">Home</Nav.Link>
 						</Nav.Item>
 						<Nav.Item>
-							<Nav.Link as={ Link } to="/admin/users">Tài khoản</Nav.Link>
+							<Nav.Link as={ Link } to="/admin/user">Tài khoản</Nav.Link>
 						</Nav.Item>
-						<Breadcrumb.Item active>Index</Breadcrumb.Item>
 					</Breadcrumb>
 				</Col>
 			</Row>

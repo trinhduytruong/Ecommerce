@@ -95,6 +95,8 @@ public class UserService {
                 existingUser.setPassword(user.getPassword());
             }
 
+            existingUser.setUpdated_at(new Date());
+
             logger.info("Update user with ID: " + id);
             return repository.save(existingUser);
         } else {

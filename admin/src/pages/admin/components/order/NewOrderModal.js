@@ -6,14 +6,15 @@ import apiOrderService from "../../../../api/apiOrderService";
 import apiProductService from "../../../../api/apiProductService";
 import { FaSave, FaTimes, FaTrashAlt } from "react-icons/fa";
 import { onErrorImage } from '../../../../helpers/commonfunc';
+import { UPLOAD_IMAGE } from '../../../../helpers/constant';
 
 const formatCurrency = (value) => {
     return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(value);
 };
 
-const NewOrderModal = ({ 
-	show, onHide, 
-	orderToUpdate, 
+const NewOrderModal = ({
+	show, onHide,
+	orderToUpdate,
 	refreshOrders }) => {
     const [selectedProducts, setSelectedProducts] = useState([]);
     const [user, setUser] = useState(null);
@@ -239,7 +240,7 @@ const NewOrderModal = ({
                     {selectedProducts?.map((product) => (
                         <tr key={product.value}>
                             <td className='align-middle'>
-                                <Image src={product.avatar || "https://via.placeholder.com/150"} 
+                                <Image src={product.avatar || UPLOAD_IMAGE}
 								onError={onErrorImage}
 								alt="Product" rounded style={{ width: '50px', height: '50px', border: "1px solid #8a8484" }} />
                             </td>

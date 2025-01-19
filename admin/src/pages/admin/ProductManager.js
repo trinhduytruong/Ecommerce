@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import ProductModal from './components/product/ProductModal';
 import DeleteConfirmationModal from './components/product/ProductDeleteConfirmationModal';
 import apiUpload from "../../api/apiUpload";
+import { UPLOAD_IMAGE } from '../../helpers/constant';
 
 const ProductManager = () => {
     const [products, setProducts] = useState([]);
@@ -33,7 +34,7 @@ const ProductManager = () => {
         const productData = {
             ...values,
             price: parseInt(values.price, 10),
-            avatar: productImage || defaultImage,
+            avatar: productImage || UPLOAD_IMAGE,
             content: description,
         };
         try {
@@ -97,7 +98,6 @@ const ProductManager = () => {
                         <Nav.Item>
                             <Nav.Link as={Link} to="/admin/products">Products</Nav.Link>
                         </Nav.Item>
-                        <Breadcrumb.Item active>Index</Breadcrumb.Item>
                     </Breadcrumb>
                 </Col>
             </Row>
@@ -128,7 +128,7 @@ const ProductManager = () => {
                             <tr key={product._id}>
                                 <td>{index + 1}</td>
                                 <td>
-                                    <Image src={product.avatar || "https://via.placeholder.com/150"} alt="Promotion" rounded style={{width: '50px', height: '50px'}} />
+                                    <Image src={product.avatar || UPLOAD_IMAGE} alt="Promotion" rounded style={{width: '50px', height: '50px'}} />
                                 </td>
                                 <td>{product.name}</td>
                                 <td>{product.category?.name}</td>
@@ -147,20 +147,12 @@ const ProductManager = () => {
                     </Table>
                 </Col>
             </Row>
-
-            {/*<ProductModal*/}
-            {/*    showProductModal={showProductModal}*/}
-            {/*    setShowProductModal={setShowProductModal}*/}
-            {/*    editingProduct={editingProduct}*/}
-            {/*    handleAddEditProduct={handleAddEditProduct}*/}
-            {/*/>*/}
-
             <ProductModal
                 showProductModal={showProductModal}
                 setShowProductModal={setShowProductModal}
                 editingProduct={editingProduct}
                 productImage={productImage}
-                defaultImage={defaultImage}
+                defaultImage={UPLOAD_IMAGE}
                 handleImageChange={handleImageChange}
                 description={description}
                 setDescription={setDescription}

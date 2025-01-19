@@ -128,7 +128,6 @@ const SlideManager = () =>
 					<Breadcrumb>
 						<Nav.Item><Nav.Link as={ Link } to="/">Home</Nav.Link></Nav.Item>
 						<Nav.Item><Nav.Link as={ Link } to="/admin/slides">Slide</Nav.Link></Nav.Item>
-						<Breadcrumb.Item active>Index</Breadcrumb.Item>
 					</Breadcrumb>
 				</Col>
 			</Row>

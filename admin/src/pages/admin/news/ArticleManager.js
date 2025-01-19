@@ -24,7 +24,7 @@ import StatusLabel from "../../../helpers/StatusLabel";
 import ModelConfirmDeleteData from "../../components/model-delete/ModelConfirmDeleteData";
 import { createSlug, formatTime } from "../../../helpers/formatters";
 import { PaginationPage } from '../components/common/paginationPage';
-import { INIT_PAGING } from '../../../helpers/constant';
+import { INIT_PAGING, UPLOAD_IMAGE } from '../../../helpers/constant';
 import { toast } from 'react-toastify';
 import tagService from '../../../api/tagService';
 import menuService from '../../../api/menuService';
@@ -112,7 +112,7 @@ const ArticleManager = () =>
 		const tagIds = selectedTags?.map( tag => tag?.value );
 		const dataModel = {
 			...values,
-			avatar: values?.avatar || editingProduct?.avatar || defaultImage,
+			avatar: values?.avatar || editingProduct?.avatar || UPLOAD_IMAGE,
 			content: values?.content,
 			tags: tagIds,
 			slug: createSlug( values.name )
@@ -206,7 +206,6 @@ const ArticleManager = () =>
 						<Nav.Item>
 							<Nav.Link as={ Link } to="/admin/news/articles">Bài viết</Nav.Link>
 						</Nav.Item>
-						<Breadcrumb.Item active>Index</Breadcrumb.Item>
 					</Breadcrumb>
 				</Col>
 			</Row>
@@ -245,7 +244,7 @@ const ArticleManager = () =>
 								<tr key={ article.id }>
 									<td className={ 'text-center' } >{ index + 1 }</td>
 									<td className='text-center'>
-										<Image src={ article.avatar || "https://via.placeholder.com/150" } alt="Promotion"
+										<Image src={ article.avatar || UPLOAD_IMAGE } alt="Promotion"
 											rounded style={ { width: '50px', height: '50px' } } />
 									</td>
 									<td>{ article.name }</td>
@@ -291,7 +290,7 @@ const ArticleManager = () =>
 				editingProduct={ editingProduct }
 				imageData={ imageData }
 				setLoading={ setLoading }
-				defaultImage={ defaultImage }
+				defaultImage={ UPLOAD_IMAGE }
 				content={ contentArticle }
 				setContent={ setContent }
 				discription = { discriptionArticle}

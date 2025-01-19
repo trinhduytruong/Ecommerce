@@ -14,6 +14,7 @@ import categoryService from '../../../api/categoryService';
 import productLabelService from '../../../api/productLabelService';
 import brandService from '../../../api/brandService';
 import { ProductSearch } from '../components/product/ProductSearch';
+import { UPLOAD_IMAGE } from '../../../helpers/constant';
 
 const ProductManager = () =>
 {
@@ -215,7 +216,6 @@ const ProductManager = () =>
 						<Nav.Item>
 							<Nav.Link as={ Link } to="/admin/ecommerce/product">Sản phẩm</Nav.Link>
 						</Nav.Item>
-						<Breadcrumb.Item active>Index</Breadcrumb.Item>
 					</Breadcrumb>
 				</Col>
 			</Row>
@@ -257,7 +257,7 @@ const ProductManager = () =>
 								<tr key={ product?.id }>
 									<td>{ index + 1 }</td>
 									<td>
-										<Image src={ product?.avatar || defaultImage }
+										<Image src={ product?.avatar || UPLOAD_IMAGE }
 											onError={ onErrorImage }
 											alt="Product avatar"
 											rounded style={ { width: '50px', height: '50px', border: "1px solid gray" } } />

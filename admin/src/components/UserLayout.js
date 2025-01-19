@@ -15,6 +15,7 @@ import './UserLayout.css'; // CSS tùy chỉnh
 import { logout } from "../redux/slices/authSlice";
 import { useDispatch } from "react-redux";
 import {ToastContainer} from "react-toastify";
+import { UPLOAD_IMAGE } from '../helpers/constant';
 
 const UserLayout = ({ isAuthenticated, user }) => {
     const dispatch = useDispatch();
@@ -39,7 +40,7 @@ const UserLayout = ({ isAuthenticated, user }) => {
                         <Dropdown align="end">
                             <Dropdown.Toggle as={Nav.Link} id="dropdown-user">
                                 <img
-                                    src={user?.avatar || 'https://via.placeholder.com/150'}
+                                    src={user?.avatar || UPLOAD_IMAGE}
                                     alt="Avatar"
                                     style={{ width: 30, height: 30, borderRadius: '50%', marginRight: 10 }}
                                 />

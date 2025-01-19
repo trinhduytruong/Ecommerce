@@ -5,6 +5,7 @@ import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { FaCamera } from 'react-icons/fa';
 import { uploadAvatar } from "../../../../redux/slices/authSlice";
+import { UPLOAD_IMAGE } from '../../../../helpers/constant';
 
 const PromotionFormModal = ({
                                 showPromotionModal,
@@ -82,7 +83,7 @@ const PromotionFormModal = ({
                                         {uploading ? (
                                             <Spinner animation="border" variant="primary" />
                                         ) : (
-                                            <img src={imagePreview || "https://via.placeholder.com/150"} alt="Promotion" className="promotion-img" style={{ width: '150px', height: '150px', borderRadius:'10px'}} />
+                                            <img src={imagePreview || UPLOAD_IMAGE} alt="Promotion" className="promotion-img" style={{ width: '150px', height: '150px', borderRadius:'10px'}} />
                                         )}
                                         <Formik
                                             initialValues={{

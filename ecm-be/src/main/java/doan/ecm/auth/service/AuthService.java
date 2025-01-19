@@ -50,6 +50,7 @@ public class AuthService {
             user.setStatus(1);
             user.setEmail(registerRequest.getEmail());
             user.setName(registerRequest.getName());
+            user.setCreated_at(new Date());
             user.setPassword(passwordEncoder.encode(registerRequest.getPassword()));
             userRepository.save(user);
             return new AuthResponse(this.jwtTokenUtil.generateToken(user.getEmail()), user);

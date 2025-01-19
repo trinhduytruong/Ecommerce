@@ -8,6 +8,7 @@ import {FaCartShopping, FaPencil} from "react-icons/fa6";
 import apiSettingInformation from "../../../api/apiSettingInformation";
 import apiUpload from "../../../api/apiUpload";
 import {toast} from "react-toastify";
+import { UPLOAD_IMAGE } from '../../../helpers/constant';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
@@ -166,7 +167,7 @@ const InformationManage = () => {
                             <Form.Label>Ảnh đại diện</Form.Label>
                             <div className="mb-3">
                                 <img
-                                    src={previewAvatar || 'https://via.placeholder.com/150'}
+                                    src={previewAvatar || UPLOAD_IMAGE}
                                     alt="Avatar"
                                     className="img-fluid rounded-circle"
                                     style={{ width: '150px', height: '150px', objectFit: 'cover' }}

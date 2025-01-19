@@ -3,6 +3,7 @@ import {Table, Button, ButtonGroup, Dropdown, Image} from 'react-bootstrap';
 import {FaEdit, FaListUl, FaTrash} from "react-icons/fa";
 import StatusLabel from "../../../../helpers/StatusLabel";
 import moment from "moment/moment";
+import { UPLOAD_IMAGE } from '../../../../helpers/constant';
 
 const BrandTable = ({ brands, openCategoryModal, setCategoryToDelete, setShowDeleteModal }) => {
     const defaultImage = "https://via.placeholder.com/150";
@@ -25,7 +26,7 @@ const BrandTable = ({ brands, openCategoryModal, setCategoryToDelete, setShowDel
                 <tr key={item?.id}>
                     <td>{index + 1}</td>
                     <td>
-                        <Image src={item?.avatar || defaultImage} alt="Product avatar" rounded
+                        <Image src={item?.avatar || UPLOAD_IMAGE} alt="Product avatar" rounded
                                style={{width: '50px', height: '50px'}}/>
                     </td>
                     <td className="text-start">{item?.name}</td>
