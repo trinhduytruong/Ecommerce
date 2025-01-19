@@ -191,14 +191,16 @@ useEffect(() => {
           <div className="pro-details-cart btn-hover">
             {productStock && productStock > 0 ? (
               <button
-                onClick={() =>
+                onClick={() => {
                   addToCart(
                     product,
                     addToast,
                     quantityCount,
                     selectedProductColor,
                     selectedProductSize
-                  )
+                  );
+                }
+
                 }
                 disabled={productCartQty >= productStock}
               >
@@ -209,20 +211,23 @@ useEffect(() => {
               <button disabled>Out of Stock</button>
             )}
           </div>
-          {/* <div className="pro-details-wishlist">
+          <div className="pro-details-wishlist">
             <button
               className={wishlistItem !== undefined ? "active" : ""}
-              disabled={wishlistItem !== undefined}
+              // disabled={wishlistItem !== undefined}
               title={
                 wishlistItem !== undefined
                   ? "Đã thêm vào danh sách yêu thích"
                   : "Thêm vào danh sách yêu thích"
               }
-              onClick={() => addToWishlist(product, addToast)}
+              onClick={() => {
+                console.log("Button clicked");
+                addToWishlist(product, addToast)
+              }}
             >
               <i className="pe-7s-like" />
             </button>
-          </div> */}
+          </div>
         </div>
       )}
       {product.brand ? (
@@ -312,7 +317,7 @@ ProductDescriptionInfo.propTypes = {
   finalDiscountedPrice: PropTypes.number,
   finalProductPrice: PropTypes.number,
   product: PropTypes.object,
-  wishlistItem: PropTypes.object,
+  wishlistItem: PropTypes.array,
 };
 
 const mapDispatchToProps = (dispatch) => {

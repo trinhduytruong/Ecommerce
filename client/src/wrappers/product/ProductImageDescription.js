@@ -18,9 +18,9 @@ const ProductImageDescription = ({
                                      wishlistItems,
                                      compareItems
                                  }) => {
-    const wishlistItem = wishlistItems?.filter(
-        wishlistItem => wishlistItem.id === product.id
-    )[0];
+    // const wishlistItem = wishlistItems?.filter(
+    //     wishlistItem => wishlistItem.id === product.id
+    // )[0];
     // const compareItem = compareItems?.filter(
     //     compareItem => compareItem.id === product.id
     // )[0];
@@ -70,7 +70,7 @@ const ProductImageDescription = ({
                             finalDiscountedPrice={finalDiscountedPrice}
                             finalProductPrice={finalProductPrice}
                             cartItems={cartItems}
-                            wishlistItem={wishlistItem}
+                            wishlistItem={wishlistItems}
                             compareItem={compareItem}
                             addToast={addToast}
                         />
