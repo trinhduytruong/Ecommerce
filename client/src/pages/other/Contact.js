@@ -48,13 +48,13 @@ const Contact = ({ location }) => {
                     </div>
                     <div className="contact-info-dec">
                       <p>
-                        <a href="mailto:doantotnghiep@email.com">
-                        doantotnghiep@email.com
+                        <a href="mailto:cskhservicetshop@gmail.com">
+                        tshop@gmail.com
                         </a>
                       </p>
                       <p>
                         <a href="https://doantotnghiep.com">
-                          doantotnghiep.com
+                          tshopfashion.com
                         </a>
                       </p>
                     </div>
