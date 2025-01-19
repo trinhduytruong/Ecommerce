@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Container, Row, Col, Button, Pagination, Breadcrumb, Nav, Form, Image } from 'react-bootstrap';
 import { Link, useSearchParams } from "react-router-dom";
 import slideService from '../../../api/slideService';
@@ -17,6 +17,7 @@ const SlideManager = () =>
 	const [ categoryToDelete, setCategoryToDelete ] = useState( null );
 	const [ loading, setLoading ] = useState( false );
 	const [ imagePreview, setImagePreview ] = useState( null );
+	const fileInputRef = useRef(null);
 	const [ searchParams, setSearchParams ] = useSearchParams();
 
 	const [ searchCriteria, setSearchCriteria ] = useState( {
@@ -28,7 +29,11 @@ const SlideManager = () =>
 	const openCategoryModal = ( category = null ) =>
 	{
 		setEditingCategory( category );
-		if ( category.avatar ) setImagePreview( category.avatar );
+		if ( category.avatar ) {
+			setImagePreview( category.avatar );
+		} else {
+			setImagePreview(null);
+		}
 	};
 
 	const fetchDataWithParams = async ( params ) =>
@@ -93,7 +98,7 @@ const SlideManager = () =>
 	};
 
 
-	const handleAddEditCategory = async ( values ) =>
+	const handleAddEditCategory = async ( values, { resetForm } ) =>
 	{
 		setLoading( true );
 		if ( values.image_url )
@@ -112,6 +117,10 @@ const SlideManager = () =>
 			setEditingCategory( null );
 			setImagePreview( null );
 			fetchDataWithParams( { page: 1, page_size: 10 } );
+			resetForm();
+			if (fileInputRef.current) {
+                fileInputRef.current.value = '';
+            }
 		} catch ( error )
 		{
 			console.error( "Error adding/updating slide:", error );
@@ -175,7 +184,7 @@ const SlideManager = () =>
 							link: Yup.string().url( 'Link không hợp lệ' ).required( 'Link không được để trống' ),
 							description: Yup.string().required( 'Mô tả không được để trống' )
 						} ) }
-						onSubmit={ handleAddEditCategory }
+						onSubmit={(values, actions) => handleAddEditCategory(values, actions)}
 					>
 						{ ( { handleSubmit, setFieldValue } ) => (
 							<Form onSubmit={ handleSubmit }>
@@ -205,6 +214,7 @@ const SlideManager = () =>
 								<Form.Group className="mb-3">
 									<Form.Label>Ảnh</Form.Label>
 									<input
+									    ref={fileInputRef}
 										type="file"
 										className="form-control"
 										onChange={ ( event ) => handleImageUpload( event, setFieldValue ) }

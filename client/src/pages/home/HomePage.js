@@ -18,7 +18,7 @@ const HomePage = () => {
   const getListSlides = async () => {
     const response = await API_SERVICE.get("slides", {
       page: 1,
-      page_size: 2,
+      page_size: 4,
       page_name: "home",
     });
     if (response?.status == "success") {

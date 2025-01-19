@@ -4,9 +4,9 @@ import { Formik, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { FaSave, FaTimes, FaUpload } from "react-icons/fa";
 import { toast } from 'react-toastify';
-import { DEFAULT_IMG, STATUS_COMMON } from '../../../../helpers/constant';
+import { DEFAULT_IMG, STATUS_COMMON, UPLOAD_IMAGE } from '../../../../helpers/constant';
 import apiUpload from '../../../../api/apiUpload';
-// import 
+// import
 
 const ModalData = ( {
 	showCategoryModal,
@@ -122,8 +122,8 @@ const ModalData = ( {
 								<Form.Label>Avatar</Form.Label>
 								<div className='d-flex align-items-center justify-content-center'>
 									<Image
-										src={ fileAvatar.url || DEFAULT_IMG }
-										alt={ fileAvatar.url || DEFAULT_IMG }
+										src={ fileAvatar.url || UPLOAD_IMAGE }
+										alt={ fileAvatar.url || UPLOAD_IMAGE }
 										width="90"
 										onClick={ () => document.getElementById( 'album-upload' ).click() }
 										height="90"

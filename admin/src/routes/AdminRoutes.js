@@ -42,24 +42,11 @@ const AdminRoutes = () => {
         // return <Navigate to="/login" />; // Redirect to login if not authenticated
     }
 
-    // if (user.role !== 'admin' && user.role !== 'staff') {
-    //     return <Navigate to="/unauthorized" />;
-    // }
-
     return (
         <Routes>
             <Route element={<AdminLayout isAuthenticated={isAuthenticated} user={user} />}>
-                {/* Common Routes for both admin and staff */}
-
-                {/*<Route path="services" element={<ServiceManager />} />*/}
-                {/*<Route path="promotions" element={<PromotionManager />} />*/}
-                {/*<Route path="appointments" element={<AppointmentManager />} />*/}
-                {/*<Route path="products" element={<ProductManager />} />*/}
-                {/*<Route path="orders" element={<OrderManager />} />*/}
-
                 {/* Admin-only Routes */}
                 {user && (
-                // {user.role === 'admin' && (
                     <>
                         <Route index element={<AdminDashboard />} />
                         <Route path="dashboard" element={<AdminDashboard />} />
@@ -80,14 +67,9 @@ const AdminRoutes = () => {
                         <Route path="slides" element={<SlideManager />} />
                         <Route path="profile" element={<ProfileManager />} />
                         <Route path="setting/information" element={<InformationManage />} />
-                        {/* Add other admin-only routes here */}
                     </>
                 )}
                 <Route index element={<AdminDashboard />} />
-                {/* Staff trying to access admin-only routes should be redirected */}
-                {/*{user.role === 'staff' && (*/}
-                {/*    <Route path="*" element={<Navigate to="/unauthorized" />} />*/}
-                {/*)}*/}
             </Route>
         </Routes>
     );

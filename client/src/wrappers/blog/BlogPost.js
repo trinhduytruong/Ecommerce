@@ -30,10 +30,10 @@ const BlogPost = ( props ) =>
                             </li> */}
 						</ul>
 					</div>
-					<p className="mt-3">
+					<p className="mt-3" style={ { fontSize: "20px" } }>
 						{ article.description }
 					</p>
-					<div className="mt-3" style={ { fontSize: "20px" } } dangerouslySetInnerHTML={ { __html: article?.content } }></div>
+					<div className="mt-3" dangerouslySetInnerHTML={ { __html: article?.content } }></div>
 				</div>
 			</div>
 		</Fragment>

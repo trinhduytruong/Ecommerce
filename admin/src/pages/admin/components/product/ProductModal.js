@@ -12,7 +12,7 @@ import productLabelService from '../../../../api/productLabelService';
 import brandService from '../../../../api/brandService';
 import { formatCurrencyInput } from '../../../../helpers/formatters';
 import apiUpload from "../../../../api/apiUpload";
-import { DEFAULT_IMAGE, DEFAULT_IMG } from '../../../../helpers/constant';
+import { DEFAULT_IMAGE, DEFAULT_IMG, UPLOAD_IMAGE } from '../../../../helpers/constant';
 import { onErrorImage } from '../../../../helpers/commonfunc';
 import { toast } from 'react-toastify';
 
@@ -162,7 +162,7 @@ const ProductModal = ( {
 											<Form.Label>Ảnh chính sản phẩm</Form.Label>
 											<div className="main-image-preview mb-2">
 												<img
-													src={ productImage ? productImage : DEFAULT_IMAGE }
+													src={ productImage ? productImage : UPLOAD_IMAGE }
 													alt="Main Product"
 													onError={ onErrorImage }
 													onClick={ () =>
@@ -180,7 +180,7 @@ const ProductModal = ( {
 											<Form.Control id="product-main-avatar" type="file" onChange={ handleImageChange } />
 										</Form.Group>
 
-										<Form.Group className="mb-3 flex-grow-1">
+										{/* <Form.Group className="mb-3 flex-grow-1">
 											<Form.Label>Album ảnh sản phẩm</Form.Label>
 											<div className="album-images-container" style={ { overflowY: 'auto', maxHeight: 'calc(100vh - 400px)' } }>
 												<Row className="g-2">
@@ -228,7 +228,7 @@ const ProductModal = ( {
 													</Col>
 												</Row>
 											</div>
-										</Form.Group>
+										</Form.Group> */}
 									</div>
 								</Col>
 								<Col md={ 8 }>
