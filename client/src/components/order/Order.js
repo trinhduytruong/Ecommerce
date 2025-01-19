@@ -306,9 +306,7 @@ const Order = (props) => {
                                           {customNumber(product.price)}
                                         </td>
                                         <td className="align-middle">
-                                          {customNumber(
-                                            product.total_price * product.qty
-                                          )}
+                                          {customNumber(product.total_price)}
                                         </td>
                                         {item?.status == "completed" && (
                                           <th className="text-nowrap align-middle">
